@@ -1,0 +1,4 @@
+transaction_id,customer_name,account_number,amount
+TXN-1001,Asha Kumar,001234567890,1250.50
+TXN-1002,Rahul Shah,009876543210,499.99
+TXN-1003,Meera Patel,001122334455,7800

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transaction Import</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">MAKER / CHECKER WORKFLOW</p>
+        <h1>Transaction Import</h1>
+        <p class="subheading">Upload a CSV, review the batch, and approve valid transactions.</p>
+      </div>
+      <button class="button secondary" id="refreshButton" type="button">Refresh</button>
+    </header>
+
+    <section class="card" aria-labelledby="uploadHeading">
+      <h2 id="uploadHeading">Upload CSV</h2>
+      <p class="help">Required columns: transaction_id, customer_name, account_number, amount</p>
+      <form id="uploadForm">
+        <label for="csvFile">CSV file</label>
+        <div class="upload-row">
+          <input id="csvFile" name="file" type="file" accept=".csv,text/csv" required>
+          <button class="button" id="uploadButton" type="submit">Upload and validate</button>
+        </div>
+      </form>
+      <div id="uploadResult" class="notice" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="summary" aria-label="Transaction summary">
+      <div class="summary-card"><span>Batches</span><strong id="batchCount">0</strong></div>
+      <div class="summary-card"><span>Valid transactions</span><strong id="transactionCount">0</strong></div>
+      <div class="summary-card"><span>Pending</span><strong id="pendingCount">0</strong></div>
+      <div class="summary-card"><span>Authorized</span><strong id="authorizedCount">0</strong></div>
+    </section>
+
+    <section class="card" aria-labelledby="batchesHeading">
+      <div class="section-heading"><div><h2 id="batchesHeading">Batches</h2><p class="help">Review counts and approve pending transactions.</p></div></div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>ID</th><th>File</th><th>Total</th><th>Valid</th><th>Invalid</th><th>Pending</th><th>Authorized</th><th>Created</th><th>Action</th></tr></thead>
+          <tbody id="batchRows"><tr><td colspan="9" class="empty">Loading batches…</td></tr></tbody>
+        </table>
+      </div>
+      <div id="batchDetails" class="details" hidden></div>
+    </section>
+
+    <section class="card" aria-labelledby="auditHeading">
+      <h2 id="auditHeading">Audit log</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Time</th><th>Batch</th><th>Action</th><th>Performed by</th><th>Details</th></tr></thead>
+          <tbody id="auditRows"><tr><td colspan="5" class="empty">Loading audit log…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <p id="pageError" class="page-error" role="alert"></p>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+</html>
